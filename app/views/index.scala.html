@@ -8,7 +8,7 @@
     @for(immobilie <- immobilieList) {
         <h2> @immobilie.getName() </h2>
         <div class="media">
-            <img class="media-object" src="@routes.Assets.versioned("images/haus1.jpg")"> </img>
+            <img class="media-object" src="@routes.Assets.versioned("images/immobilien/"+immobilie.getImagePath())"> </img>
         </div>
     }
 

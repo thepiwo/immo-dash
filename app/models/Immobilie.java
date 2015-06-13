@@ -19,7 +19,7 @@ public class Immobilie extends Model {
     private String name;
 
     @Lob
-    public byte[] image;
+    public String imagePath;
 
     public int getId() {
         return id;
@@ -33,12 +33,12 @@ public class Immobilie extends Model {
         this.name = name;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public static Finder<Long,Immobilie> find = new Finder<>(Long.class, Immobilie.class);
