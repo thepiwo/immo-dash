@@ -32,6 +32,6 @@ public class PreisindexVDP {
     }
 
 
-
+    public static Finder<Long, PreisindexVDP> find = new Finder<>(Long.class, PreisindexVDP.class);
 
 }

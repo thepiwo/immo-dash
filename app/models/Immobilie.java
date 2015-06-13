@@ -149,7 +149,7 @@ public class Immobilie extends Model {
         return getKaufPreis() - getKrediteSum() - getAbschreibungenSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 
-    public double calculateWert(double wertsteigerungInProzent) {
+    public ArrayList<Double> calculateWert(double wertsteigerungInProzent) {
         int quartalKaufdatum = 1 + (getKaufDatum().getMonth()-1) / 3;
         int jahrKaufdatum = getKaufDatum().getYear();
         int quartalAktuell = 1 + (new Date().getMonth()-1) / 3;
@@ -157,8 +157,11 @@ public class Immobilie extends Model {
         ArrayList<Double> listWerte = new ArrayList<Double>();
         for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4-quartalKaufdatum+quartalAktuell;i++)
         {
-            Double wert = new Double(getKaufPreis()*);
+            Double wert = new Double(getKaufPreis()*
+                    (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()-
+                    PreisindexVDP.find.where().eq("quartal",((quartalKaufdatum+i+1)%4+1)).eq("jahr",jahrKaufdatum+i%4).setMaxRows(1).findUnique().getValue()));
+            listWerte.add(wert);
         }
-        return ;
+        return listWerte;
     }
 }
