@@ -23,16 +23,16 @@ public class Immobilie extends Model {
     @Lob
     public String imagePath;
 
-    @OneToMany(mappedBy = "immobilie")
+    @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Mieter> mieter;
 
-    @OneToMany(mappedBy = "immobilie")
+    @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Abschreibung> abschreibungen;
 
-    @OneToMany(mappedBy = "immobilie")
+    @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Investition> investitionen;
 
-    @OneToMany(mappedBy = "immobilie")
+    @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Kredit> kredite;
 
     public int getId() {
