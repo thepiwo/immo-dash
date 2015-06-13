@@ -19,10 +19,10 @@ public class Kredit {
 
     private double rate;
 
-    @Formats.DateTime(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "date")
     private Date kreditStart;
 
-    @Formats.DateTime(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "date")
     private Date kreditEnde;
 
     @Column(columnDefinition = "TEXT")

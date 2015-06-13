@@ -19,10 +19,10 @@ public class Mieter {
 
     private double miete;
 
-    @Formats.DateTime(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "date")
     private Date mietStart;
 
-    @Formats.DateTime(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "date")
     private Date mietEnde;
 
     @Column(columnDefinition = "TEXT")
