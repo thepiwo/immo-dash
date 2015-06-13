@@ -24,7 +24,7 @@ public class ImmobilienController extends Controller {
         return ok(showImmo.render(immo));
     }
 
-    public Result update(int)
+
 
 
 }
