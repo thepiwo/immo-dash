@@ -19,7 +19,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="dashboard">
 
-                            <div style="margin-top : 15px">
+                            <div style="margin-top: 15px">
                                 <div class="alert alert-info alert-heading" role="alert"><strong>Gesamtwert</strong></div>
                                 <div class="alert alert-success alert-heading" role="alert"><strong>Kaufpreis</strong>
                                     (inkl Wertsteigerung)</div>
@@ -67,7 +67,7 @@
 
                                 new Chart(c1.getContext("2d")).Line(data1, options1)
                             </script>
-                            <div class="container" style="margin-top : 15px ">
+                            <div class="container" style="margin-top: 15px ">
                                 <a class="btn btn-primary
                                 " href="@routes.ImmobilienController.update(immo.getId())" role="button">
                                     Basisdaten bearbeitenn</a>
@@ -78,7 +78,7 @@
                         <div class="tab-pane fade" id="bilder">
 
                             <div class="container">
-                                <div class="media" style="padding : 10px ;">
+                                <div class="media" style="padding: 10px ;">
                                     <img class="media-object full-image" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
                                 </div>
                             </div>
@@ -86,49 +86,54 @@
 
                         </div>
 
-                        @if(immo.getMieter.size()>0){
                         <div class="tab-pane fade" id="mieter">
+                            <div class="container">
+                                @if(immo.getMieter.size()>0){
 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Bewertung
-                                        </th>
-                                        <th>
-                                            Miete
-                                        </th>
-                                        <th>
-                                            Vertragsdaten
-                                        </th>
-                                        <th>
-                                            Miet-Dauer
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @for(mieter <- immo.getMieter()) {
-                                    <tr>
-                                        <td>@mieter.getName()</td>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Bewertung
+                                                </th>
+                                                <th>
+                                                    Miete
+                                                </th>
+                                                <th>
+                                                    Vertragsdaten
+                                                </th>
+                                                <th>
+                                                    Miet-Dauer
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @for(mieter <- immo.getMieter()) {
+                                            <tr>
+                                                <td>@mieter.getName()</td>
 
-                                        <td>@mieter.getBewertung()</td>
+                                                <td>@mieter.getBewertung()</td>
 
-                                        <td>@mieter.getMiete()€</td>
+                                                <td>@mieter.getMiete()€</td>
 
-                                        <td>@mieter.getVertragsDetails()</td>
+                                                <td>@mieter.getVertragsDetails()</td>
 
-                                        <td>@mieter.getMietStart().format("dd.MM.yy") - @mieter.getMietEnde().format("dd.MM.yy")</td>
-                                    </tr>
+                                                <td>@mieter.getMietStart().format("dd.MM.yy") - @mieter.getMietEnde().format("dd.MM.yy")</td>
+                                            </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                    <div class="alert alert-success" role="alert">Gesamt-Miete: <strong>@immo.getMietSum()€</strong></div>
+                                }else{
+                                    <div class="alert alert-danger" role="alert">Keine Mieter in dieser Immobilie</div>
                                 }
-                                </tbody>
-                            </table>
-                            <div class="alert alert-success" role="alert">Gesamt-Miete: <strong>@immo.getMietSum()€</strong></div>
-                            }else{
-                            <div class="alert alert-danger" role="alert">Keine Mieter in dieser Immobilie</div>
-                            }
+                                <div class="well-lg">
+                                    Neuen Mieter erstellen
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="investitionen">Info 4</div>
                         <div class="tab-pane fade" id="kredite">Info 5</div>

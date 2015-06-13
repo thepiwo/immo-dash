@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by Philipp on 13.06.2015.
  */
 @Entity
-public class Investition {
+public class Investition extends Model {
 
     @Id
     private int id;
