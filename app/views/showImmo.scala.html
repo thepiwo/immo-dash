@@ -1,6 +1,9 @@
 @(immo: models.Immobilie)
+@main("Immobilie: "+ immo.getName()) {
+    <h1>@immo.getName()</h1>
 
-<div>@immo.getName()</div>
+    <div class="media">
+        <img class="media-object" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
+    </div>
 
-<a class="btn btn-default" href="#" role="button">Bearbeiten</a>
-<a class="btn btn-default" href="#" role="button">Löschen</a>
+}
