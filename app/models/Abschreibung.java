@@ -26,6 +26,7 @@ public class Abschreibung {
 
     public int getId() {
         return id;
+
     }
 
     public String getName() {
