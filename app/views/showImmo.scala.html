@@ -1,7 +1,9 @@
 @(immo: models.Immobilie)
+@main("Immobilie: "+ immo.getName()) {
+    <h1>@immo.getName()</h1>
 
-<h1>@immo.getName()</h1>
+    <div class="media">
+        <img class="media-object" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
+    </div>
 
-<div class="media">
-    <img class="media-object" src="@routes.Assets.versioned("images/immobilien/"+immo.getImagePath())"> </img>
-</div>
+}
