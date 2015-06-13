@@ -32,6 +32,8 @@
                             <div class="row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
                             <div class="row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
                             <div class="row">@immobilie.getAbschreibungenSum()€ Abschreibungen</div>
+                            <div class="row"></div>
+                            <div class="row">@immobilie.getWert()€ Wert</div>
                         </td>
 
                         <td>
@@ -86,6 +88,7 @@
     <row>
         <a class="btn btn-default" href="@routes.ImmobilienController.create()" role="button">Neue Immobilie anlegen</a>
     </row>
+
 
 }
 
