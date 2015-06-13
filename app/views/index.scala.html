@@ -27,13 +27,12 @@
                     <tr class="clickable-row" data-href="@controllers.routes.ImmobilienController.index(immobilie.getId())">
                         <td><h2>@immobilie.getName()</h2></td>
                         <td>
-                            <div class="row">@immobilie.getKaufPreis()€ Kaufpreis</div>
-                            <div class="row">@immobilie.getMieter().size() Mieter</div>
-                            <div class="row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
-                            <div class="row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
-                            <div class="row">@immobilie.getAbschreibungenSum()€ Abschreibungen</div>
-                            <div class="row"></div>
-                            <div class="row">@immobilie.getWert()€ Wert</div>
+                            <div class="row space-row">@immobilie.getKaufPreis()€ Kaufpreis</div>
+                            <div class="row space-row">@immobilie.getMieter().size() Mieter</div>
+                            <div class="row space-row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
+                            <div class="row space-row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
+                            <div class="row space-row">@immobilie.getAbschreibungenSum()€ Abschreibungen</div>
+                            <div class="row space-row bold-text">@immobilie.getWert()€ Wert</div>
                         </td>
 
                         <td>
