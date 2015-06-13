@@ -6,7 +6,7 @@
 
 
 
-    @helper.form(action = routes.ImmobilienController.editSubmit(immo.getId())) {
+    @helper.form(action = routes.ImmobilienController.editSubmit(immo.getId()), 'enctype -> "multipart/form-data")) {
         @helper.inputText(immoform("name"))
 
         <input type="file" name="picture"/>
