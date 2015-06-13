@@ -140,7 +140,7 @@ public class Immobilie extends Model {
         return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 
-    public HashMap<Date, Double> calculateWert(double wertsteigerungInProzent) {
+    public HashMap<Date, Double> calculateWert() {
         int quartalKaufdatum = 1 + (getKaufDatum().getMonth()-1) / 3;
         int jahrKaufdatum = getKaufDatum().getYear();
         int quartalAktuell = 1 + (new Date().getMonth()-1) / 3;
@@ -148,9 +148,9 @@ public class Immobilie extends Model {
         HashMap<Date, Double> listWerte = new HashMap<Date, Double>();
         for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4-quartalKaufdatum+quartalAktuell;i++)
         {
-            Double wert = new Double(getKaufPreis()*
+            Double wert = new Double(getKaufPreis()*(1+
                     (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum+i+1).eq("jahr",jahrKaufdatum+(i+quartalKaufdatum)%4).setMaxRows(1).findUnique().getValue())-
-                    PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue());
+                    PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()));
             Date date = new Date();
             date.setDate(1);
             date.setMonth(((quartalKaufdatum+i+1)*3-1)%12+1);
