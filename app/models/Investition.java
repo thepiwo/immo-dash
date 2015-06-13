@@ -1,5 +1,6 @@
 package models;
 
+import com.avaje.ebean.Model;
 import play.data.format.Formats;
 
 import javax.persistence.*;
@@ -26,4 +27,51 @@ public class Investition {
 
     @ManyToOne(fetch = FetchType.LAZY)
     Immobilie immobilie;
+
+    public int getId() {
+        return id;
+    }
+
+    public double getKosten() {
+        return kosten;
+    }
+
+    public void setKosten(double kosten) {
+        this.kosten = kosten;
+    }
+
+    public double getMiete() {
+        return miete;
+    }
+
+    public void setMiete(double miete) {
+        this.miete = miete;
+    }
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
+    }
+
+    public Immobilie getImmobilie() {
+        return immobilie;
+    }
+
+    public void setImmobilie(Immobilie immobilie) {
+        this.immobilie = immobilie;
+    }
+
+    public static Model.Finder<Long, Investition> find = new Model.Finder<>(Long.class, Investition.class);
+
 }

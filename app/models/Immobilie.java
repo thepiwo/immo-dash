@@ -49,5 +49,29 @@ public class Immobilie extends Model {
         this.imagePath = imagePath;
     }
 
+    public List<Mieter> getMieter() {
+        return mieter;
+    }
+
+    public void setMieter(List<Mieter> mieter) {
+        this.mieter = mieter;
+    }
+
+    public List<Abschreibung> getAbschreibungen() {
+        return abschreibungen;
+    }
+
+    public void setAbschreibungen(List<Abschreibung> abschreibungen) {
+        this.abschreibungen = abschreibungen;
+    }
+
+    public List<Investition> getInvestitionen() {
+        return investitionen;
+    }
+
+    public void setInvestitionen(List<Investition> investitionen) {
+        this.investitionen = investitionen;
+    }
+
     public static Finder<Long, Immobilie> find = new Finder<>(Long.class, Immobilie.class);
 }
