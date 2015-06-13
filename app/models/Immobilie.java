@@ -2,6 +2,7 @@ package models;
 
 
 import com.avaje.ebean.Model;
+import play.data.Form;
 
 import javax.persistence.*;
 import java.util.List;
@@ -74,4 +75,6 @@ public class Immobilie extends Model {
     }
 
     public static Finder<Long, Immobilie> find = new Finder<>(Long.class, Immobilie.class);
+
+    public static Form<Immobilie> immoForm = Form.form(Immobilie.class);
 }
