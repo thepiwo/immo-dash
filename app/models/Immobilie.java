@@ -7,7 +7,7 @@ import play.data.Form;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
+import java.util.*;
 /**
  * Created by Philipp on 13.06.2015.
  */
@@ -150,6 +150,15 @@ public class Immobilie extends Model {
     }
 
     public double calculateWert(double wertsteigerungInProzent) {
-        return getKaufPreis() * (1+wertsteigerungInProzent);
+        int quartalKaufdatum = 1 + (getKaufDatum().getMonth()-1) / 3;
+        int jahrKaufdatum = getKaufDatum().getYear();
+        int quartalAktuell = 1 + (new Date().getMonth()-1) / 3;
+        int jahrAktuell = new Date().getYear();
+        ArrayList<Double> listWerte = new ArrayList<Double>();
+        for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4-quartalKaufdatum+quartalAktuell;i++)
+        {
+            Double wert = new Double(getKaufPreis()*);
+        }
+        return ;
     }
 }
