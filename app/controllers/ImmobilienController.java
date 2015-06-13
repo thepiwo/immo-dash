@@ -5,6 +5,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import views.html.createImmo;
+import views.html.editImmo;
 import views.html.showImmo;
 
 public class ImmobilienController extends Controller {
@@ -36,6 +37,16 @@ public class ImmobilienController extends Controller {
         }
         immo.delete();
         return redirect(routes.Application.index());
+
+    }
+
+    public Result update(int id){
+        Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+        if (immo == null) {
+            return redirect(routes.ImmobilienController.create());
+        }
+
+        return ok(editImmo.render(Immobilie.immoForm.fill(immo),immo));
 
     }
 

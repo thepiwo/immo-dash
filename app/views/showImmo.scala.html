@@ -1,12 +1,17 @@
 @(immo: models.Immobilie)
+
 @main("Immobilie: "+ immo.getName()) {
+
     <h1>@immo.getName()</h1>
 
     <div class="media">
         <img class="media-object" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
     </div>
 
-    <a class="btn btn-default" href="@routes.ImmobilienController.update()" role="button">Basisdaten bearbeitenn</a>
-    <a class="btn btn-default" href="@routes.ImmobilienController.delete()" role="button">Immobilie löschen</a>
+    <a class="btn btn-default" href="@routes.ImmobilienController.create()" role="button">Neue Immobilie anlegen</a>
+
+    <a class="btn btn-default" href="@routes.ImmobilienController.update(immo.getId())" role="button">Basisdaten bearbeitenn</a>
+    <a class="btn btn-default" href="@routes.ImmobilienController.delete(immo.getId())" role="button">Immobilie löschen</a>
+
 
 }

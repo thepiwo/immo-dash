@@ -1,0 +1,16 @@
+@(immoform: Form[Immobilie], immo: models.Immobilie)
+
+@main("Immobilie bearbeiten: ") {
+
+    <h1>@immo.getName() bearbeiten</h1>
+
+
+
+    @helper.form(action = routes.ImmobilienController.createSubmit()) {
+        @helper.inputText(immoform("name"))
+        @helper.inputText(immoform("imagePath"))
+        <input type="submit"/>
+
+
+    }
+}

@@ -7,6 +7,8 @@ GET         /                        controllers.Application.index()
 GET         /test                    controllers.Test.index()
 GET         /immobilie/create        controllers.ImmobilienController.create()
 POST        /immobilie/create        controllers.ImmobilienController.createSubmit()
+GET         /immobilie/update        controllers.ImmobilienController.update(id: Integer)
+GET         /immobilie/delete        controllers.ImmobilienController.delete(id: Integer)
 GET         /immobilie/:id           controllers.ImmobilienController.index(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
