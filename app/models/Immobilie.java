@@ -146,7 +146,10 @@ public class Immobilie extends Model {
     public static Form<Immobilie> immoForm = Form.form(Immobilie.class);
 
     public double getWert() {
-        return getKaufPreis() - getKrediteSum() - getAbschreibungenSum() - getInvestitionenSum()*Math.exp(-0.04);
+        return getKaufPreis() - getKrediteSum() - getAbschreibungenSum() - getInvestitionenSum() * Math.exp(-0.04);
+    }
 
+    public double calculateWert(double wertsteigerungInProzent) {
+        return getKaufPreis() * (1+wertsteigerungInProzent);
     }
 }
