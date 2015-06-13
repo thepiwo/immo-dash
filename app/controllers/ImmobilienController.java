@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Immobilie;
+import play.Logger;
 import play.Play;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -28,18 +29,6 @@ public class ImmobilienController extends Controller {
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
 
-    public Result editSubmit(int id) {
-        Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
-        Immobilie immoedited = Immobilie.immoForm.bindFromRequest().get();
-        immo.setImagePath(immoedited.getImagePath());
-        immo.setKaufDatum(immoedited.getKaufDatum());
-        immo.setKaufPreis(immoedited.getKaufPreis());
-        immo.setName(immoedited.getName());
-        immo.setTyp(immoedited.getTyp());
-        immo.save();
-        return redirect(routes.ImmobilienController.index(immo.getId()));
-    }
-
     public Result index(int id) {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
         if (immo == null) {
@@ -64,12 +53,17 @@ public class ImmobilienController extends Controller {
         if (immo == null) {
             return redirect(routes.ImmobilienController.create());
         }
-
         return ok(editImmo.render(Immobilie.immoForm.fill(immo), immo));
-
     }
-    public Result updateSubmit(int id){
+
+    public Result editSubmit(int id) {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+        Immobilie immoedited = Immobilie.immoForm.bindFromRequest().get();
+        immo.setImagePath(immoedited.getImagePath());
+        immo.setKaufDatum(immoedited.getKaufDatum());
+        immo.setKaufPreis(immoedited.getKaufPreis());
+        immo.setName(immoedited.getName());
+        immo.setTyp(immoedited.getTyp());
         if (immo == null) {
             return redirect(routes.ImmobilienController.create());
         }
@@ -79,21 +73,17 @@ public class ImmobilienController extends Controller {
         if (picture != null) {
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
-            File newImage = new File(Play.application().path().getAbsolutePath()+"public/images/immobilien/" + immo.getId()+"_"+fileName);
+            File newImage = new File(Play.application().path().getAbsolutePath() + "public/images/immobilien/" + immo.getId() + "_" + fileName);
             File file = picture.getFile();
             file.renameTo(newImage);
 
-            immo.setImagePath(immo.getId()+"_"+fileName);
+            immo.setImagePath(immo.getId() + "_" + fileName);
         }
 
         immo.save();
         immo.refresh();
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
-
-
-
-
 
 
 }
