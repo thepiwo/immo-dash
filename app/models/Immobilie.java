@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.*;
-
+import java.lang.Double;
 
 /**
  * Created by Philipp on 13.06.2015.
@@ -144,18 +144,28 @@ public class Immobilie extends Model {
         return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 
-    public ArrayList<Double> calculateWert(double wertsteigerungInProzent) {
+    public HashMap<Date, Double> calculateWert() {
         int quartalKaufdatum = 1 + (getKaufDatum().getMonth()-1) / 3;
         int jahrKaufdatum = getKaufDatum().getYear();
         int quartalAktuell = 1 + (new Date().getMonth()-1) / 3;
         int jahrAktuell = new Date().getYear();
-        ArrayList<Double> listWerte = new ArrayList<Double>();
-        for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4-quartalKaufdatum+quartalAktuell;i++)
+        HashMap<Date, Double> listWerte = new HashMap<Date, Double>();
+        for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4+quartalAktuell-quartalKaufdatum;i++)
         {
-            Double wert = new Double(getKaufPreis()*
-                    (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()-
-                    PreisindexVDP.find.where().eq("quartal",((quartalKaufdatum+i+1)%4+1)).eq("jahr",jahrKaufdatum+i%4).setMaxRows(1).findUnique().getValue()));
-            listWerte.add(wert);
+//            Double wert = new Double(getKaufPreis()*(1+
+//                    (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum+i+1).eq("jahr",jahrKaufdatum+(i+quartalKaufdatum)%4).setMaxRows(1).findUnique().getValue())-
+//                    PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()));
+
+
+            //Debug  ach ja: daten liegen unter public/data!
+            Double wert=PreisindexVDP.find.where().eq("quartal", quartalKaufdatum + i + 1).eq("jahr", jahrKaufdatum + (i + quartalKaufdatum) % 4).setMaxRows(1).findUnique().getValue();
+            Date date = new Date();
+
+
+            date.setDate(1);
+            date.setMonth(((quartalKaufdatum+i+1)*3-1)%12+1);
+            date.setYear(jahrKaufdatum + (i+quartalKaufdatum)%4);
+            listWerte.put(date, wert);
         }
         return listWerte;
     }

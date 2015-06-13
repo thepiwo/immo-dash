@@ -18,4 +18,9 @@ public class Application extends Controller {
         List<Immobilie> immobilieList = Immobilie.find.findList();
         return ok(index.render(immobilieList));
     }
+
+
+    public Result intro() {
+        return ok(intro.render());
+    }
 }
