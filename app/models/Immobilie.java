@@ -141,40 +141,47 @@ public class Immobilie extends Model {
 
     public static Form<Immobilie> immoForm = Form.form(Immobilie.class);
 
-    public double getWert() {
-        return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
-    }
-
     public double calculateWert(long ts) {
-
         Date date = new Date(ts);
 
         if (kaufDatum == null) {
             return kaufPreis;
         }
+
         int quartalKaufdatum = 1 + (getKaufDatum().getMonth() - 1) / 3;
         int jahrKaufdatum = 1900 + getKaufDatum().getYear();
         int quartalAktuell = 1 + (date.getMonth() - 1) / 3;
         int jahrAktuell = 1900 + date.getYear();
 
-        Logger.info("quartalKaufdatum: " + quartalKaufdatum);
-        Logger.info("jahrKaufdatum: " + jahrKaufdatum);
-        Logger.info("quartalAktuell: " + quartalAktuell);
-        Logger.info("jahrAktuell: " + jahrAktuell);
-
         double wertIndexJahr = PreisindexVDP.find.where().eq("quartal", quartalAktuell).eq("jahr", jahrAktuell).setMaxRows(1).findUnique().getValue();
-
-        Logger.info("wertIndexJahr: "+wertIndexJahr);
 
         double wertIndexKauf = PreisindexVDP.find.where().eq("quartal", quartalKaufdatum).eq("jahr", jahrKaufdatum).setMaxRows(1).findUnique().getValue();
 
-        Logger.info("wertIndexKauf: "+wertIndexKauf);
-
-
-        double wert = kaufPreis + kaufPreis*((wertIndexJahr - wertIndexKauf)/100);
-
-        Logger.info("Wert: "+wert);
+        double wert = kaufPreis + kaufPreis * ((wertIndexJahr - wertIndexKauf) / 100);
 
         return wert;
+    }
+
+    public double calculateRealWert(long ts) {
+        return (calculateWert(ts) - getKreditAt(ts));
+    }
+
+    public double getKreditAt(long ts) {
+
+        long daysplmin =(long) (46 * 24 * 60 * 60 * 1000);
+        double kreditvalue = 0.0;
+
+        List<Kredit> kredits = Kredit.find.where().eq("immobilie_id", id).not(com.avaje.ebean.Expr.or(com.avaje.ebean.Expr.ge("kredit_start", new Date(ts - daysplmin)), com.avaje.ebean.Expr.le("kredit_ende", new Date(ts + daysplmin)))).findList();
+        for (Kredit kredit : kredits) {
+            kreditvalue += kredit.getBetrag();
+        }
+
+        return kreditvalue;
+    }
+
+    public int getScaleSteps() {
+        int scale = (int) Math.ceil((kaufPreis * 1.2) / 100);
+
+        return scale;
     }
 }

@@ -28,10 +28,10 @@
                         <td><h2>@immobilie.getName()</h2></td>
                         <td>
                             <div class="row space-row">@immobilie.getKaufPreis()€ Kaufpreis</div>
+                            <div class="row space-row bold-text">@immobilie.calculateWert(System.currentTimeMillis())€ aktueller Wert</div>
                             <div class="row space-row">@immobilie.getMieter().size() Mieter</div>
                             <div class="row space-row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
                             <div class="row space-row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
-                            <div class="row space-row bold-text">@immobilie.getWert()€ Wert</div>
                         </td>
 
                         <td>
@@ -47,13 +47,13 @@
                                 c1.height = parent.offsetHeight;
 
                                 var data1 = {
-                                  labels: ["M", "T", "W", "T", "F", "S", "S"],
+                                  labels: ["Q3 2012", "Q4 2012", "Q1 2013", "Q2 2013","Q3 2013", "Q4 2013", "Q1 2014", "Q2 2014", "Q3 2014", "Q4 2014", "Q1 2015"],
                                   datasets: [{
                                     fillColor: "rgba(178,178,178,.1)",
                                     strokeColor: "rgba(178,178,178,1)",
                                     pointColor: "#123",
                                     pointStrokeColor: "rgba(178,178,178,1)",
-                                    data: [Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100)]
+                                    data: [@immobilie.calculateRealWert(1348956000000L),@immobilie.calculateRealWert(1356908400000L),@immobilie.calculateRealWert(1364684400000L),@immobilie.calculateRealWert(1372543200000L),@immobilie.calculateRealWert(1380492000000L),@immobilie.calculateRealWert(1388444400000L),@immobilie.calculateRealWert(1396216800000L),@immobilie.calculateRealWert(1404079200000L),@immobilie.calculateRealWert(1412028000000L),@immobilie.calculateRealWert(1419980400000L),@immobilie.calculateRealWert(1427752800000L)]
                                   }]
                                 }
 
@@ -63,7 +63,7 @@
                                   scaleGridLineColor: "transparent",
                                   bezierCurve: false,
                                   scaleOverride: true,
-                                  scaleSteps: 5,
+                                  scaleSteps: @immobilie.getScaleSteps(),
                                   scaleStepWidth: 100,
                                   scaleStartValue: 0
                                 }

@@ -50,7 +50,7 @@
                                     strokeColor: "rgba(178,0,0,1)",
                                     pointColor: "#ff0000",
                                     pointStrokeColor: "rgba(178,0,0,1)",
-                                    data: [Math.floor((Math.random() * 100) + 100), Math.floor((Math.random() * 100) + 100), Math.floor((Math.random() * 100) + 100), Math.floor((Math.random() * 100) + 100), Math.floor((Math.random() * 150) + 100), Math.floor((Math.random() * 180) + 100), Math.floor((Math.random() * 200) + 100)]
+                                    data: [@immo.getKreditAt(1348956000000L),@immo.getKreditAt(1356908400000L),@immo.getKreditAt(1364684400000L),@immo.getKreditAt(1372543200000L),@immo.getKreditAt(1380492000000L),@immo.getKreditAt(1388444400000L),@immo.getKreditAt(1396216800000L),@immo.getKreditAt(1404079200000L),@immo.getKreditAt(1412028000000L),@immo.getKreditAt(1419980400000L),@immo.getKreditAt(1427752800000L)]
                                   }]
                                 }
 
@@ -60,7 +60,7 @@
                                   scaleGridLineColor: "transparent",
                                   bezierCurve: false,
                                   scaleOverride: true,
-                                  scaleSteps: 3,
+                                  scaleSteps: @immo.getScaleSteps(),
                                   scaleStepWidth: 100,
                                   scaleStartValue: 0
                                 }
