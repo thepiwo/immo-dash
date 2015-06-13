@@ -149,8 +149,8 @@ public class Immobilie extends Model {
         for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4-quartalKaufdatum+quartalAktuell;i++)
         {
             Double wert = new Double(getKaufPreis()*
-                    (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()-
-                    PreisindexVDP.find.where().eq("quartal",((quartalKaufdatum+i+1)%4+1)).eq("jahr",jahrKaufdatum+i%4).setMaxRows(1).findUnique().getValue()));
+                    (PreisindexVDP.find.where().eq("quartal",((quartalKaufdatum+i+1)%4+1)).eq("jahr",jahrKaufdatum+i%4).setMaxRows(1).findUnique().getValue())-
+                    PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue());
             listWerte.add(wert);
         }
         return listWerte;
