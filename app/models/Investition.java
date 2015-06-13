@@ -17,8 +17,6 @@ public class Investition extends Model {
 
     private double kosten;
 
-    private double miete;
-
     @Column(columnDefinition = "date")
     private Date datum;
 
@@ -38,14 +36,6 @@ public class Investition extends Model {
 
     public void setKosten(double kosten) {
         this.kosten = kosten;
-    }
-
-    public double getMiete() {
-        return miete;
-    }
-
-    public void setMiete(double miete) {
-        this.miete = miete;
     }
 
     public Date getDatum() {

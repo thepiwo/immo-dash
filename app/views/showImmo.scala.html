@@ -87,10 +87,9 @@
                         </div>
 
                         <div class="tab-pane fade" id="mieter">
-                            <div class="container">
-                                @if(immo.getMieter.size()>0){
 
-                                    <table class="table">
+
+                                    <table class="table" id="mieter-table">
                                         <thead>
                                             <tr>
                                                 <th>
@@ -108,11 +107,13 @@
                                                 <th>
                                                     Miet-Dauer
                                                 </th>
+                                                <th style="width: 20px;">
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         @for(mieter <- immo.getMieter()) {
-                                            <tr>
+                                            <tr id="mieter-@mieter.getId()">
                                                 <td>@mieter.getName()</td>
 
                                                 <td>@mieter.getBewertung()</td>
@@ -121,25 +122,131 @@
 
                                                 <td>@mieter.getVertragsDetails()</td>
 
-                                                <td>@mieter.getMietStart().format("dd.MM.yy") - @mieter.getMietEnde().format("dd.MM.yy")</td>
+                                                <td>@mieter.getMietStart().format("dd.MM.yyyy") - @mieter.getMietEnde().format("dd.MM.yyyy")</td>
+
+                                                <td><button class="btn btn-danger pull-right" onclick="delmieter(@mieter.getId())"><i class="glyphicon glyphicon-trash"></i></button> </td>
                                             </tr>
                                         }
                                         </tbody>
                                     </table>
                                     <div class="alert alert-success" role="alert">Gesamt-Miete: <strong>@immo.getMietSum()€</strong></div>
-                                }else{
-                                    <div class="alert alert-danger" role="alert">Keine Mieter in dieser Immobilie</div>
-                                }
+
                                 <div class="well well-lg">
-                                    Neuen Mieter erstellen
+                                    <h3>Neuen Mieter erstellen</h3>
+                                    <form id="new-mieter-form">
+                                        <div class="form-inline">
+                                            <input type="text" name="new-mieter-name" class="form-control form-inline" placeholder="Name" />
+
+                                            <input type="text" name="new-mieter-miete" class="form-control form-inline" placeholder="Miete" />
+
+                                            <input type="text" name="new-mieter-bewertung" class="form-control form-inline" placeholder="Bewertung" />
+
+                                            <input type="text" name="new-mieter-details" class="form-control form-inline" placeholder="Vertrag Details" />
+                                        </div>
+                                        <div class="form-inline" style="margin-top: 15px;">
+                                            <label for="new-mieter-von">Miete von: </label>
+                                            <input type="date" name="new-mieter-von" class="form-control form-inline" placeholder="Miet Start" />
+
+                                            <label for="new-mieter-bis" style="padding-left: 15px;">Miete bis: </label>
+                                            <input type="date" name="new-mieter-bis" class="form-control form-inline" placeholder="Miet Ende" />
+                                        </div>
+                                        <div class="form-group" style="margin-top: 15px;">
+                                            <input type="button" id="new-mieter-btn" class="btn btn-primary form-inline" value="erstellen" />
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
                         </div>
-                        <div class="tab-pane fade" id="investitionen">Info 4</div>
+
+                        <div class="tab-pane fade" id="investitionen">
+
+
+                                <table class="table" id="investition-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Kosten
+                                            </th>
+                                            <th>
+                                                Beschreibung
+                                            </th>
+                                            <th>
+                                                Datum
+                                            </th>
+                                            <th style="width: 20px;">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(investition <- immo.getInvestitionen()) {
+                                        <tr id="investition-@investition.getId()">
+                                            <td>@investition.getKosten()</td>
+
+                                            <td>@investition.getBeschreibung()</td>
+
+                                            <td>@investition.getDatum().format("dd.MM.yyyy")</td>
+
+                                            <td><button class="btn btn-danger pull-right" onclick="delinvestition(@investition.getId())"><i class="glyphicon glyphicon-trash"></i></button> </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                                <div class="alert alert-success" role="alert">Gesamt-Investition: <strong>@immo.getInvestitionenSum()€</strong></div>
+
+                            <div class="well well-lg">
+                                <h3>Neue Investition erstellen</h3>
+                                <form id="new-investition-form">
+                                    <div class="form-inline">
+                                        <input type="text" name="new-investition-kosten" class="form-control form-inline" placeholder="Kosten" />
+
+                                        <input type="text" name="new-investition-beschreibung" class="form-control form-inline" placeholder="Beschreibung" />
+
+                                        <label for="new-investition-datum" style="padding-left: 15px;">Datum: </label>
+                                        <input type="date" name="new-investition-datum" class="form-control form-inline" placeholder="Datum" />
+
+                                    </div>
+                                    <div class="form-group" style="margin-top: 15px;">
+                                        <input type="button" id="new-investition-btn" class="btn btn-primary form-inline" value="erstellen" />
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
                         <div class="tab-pane fade" id="kredite">Info 5</div>
                     </div>
                 </div>
             </div>
         </div>
+        <script type="application/javascript">
 
+            function delmieter (id){
+                $.get("/ajax/del-mieter/"+id).done( function(data){
+                    $("#mieter-"+id).remove();
+                });
+            }
+
+            jQuery(document).ready(function($) {
+                $("#new-mieter-btn").click(function() {
+                   $.post( "/ajax/new-mieter/@immo.getId()", $( "#new-mieter-form" ).serialize())
+                    .done(function( data ) {
+                        $( "#new-mieter-form" )[0].reset();
+                        $('#mieter-table').append('<tr id="mieter-'+data.id+'"><td>'+data.name+'</td><td>'+data.bewertung+'</td><td>'+data.miete+'€</td><td>'+data.vertragsDetails+'</td><td>'+new Date(data.mietStart).toLocaleDateString()+' - '+new Date(data.mietEnde).toLocaleDateString()+'</td><td><button class="btn btn-danger pull-right" onclick="delmieter('+data.id+')"><i class="glyphicon glyphicon-trash"></i></button></td></tr>');
+                    });
+                });
+                 $("#new-investition-btn").click(function() {
+                   $.post( "/ajax/new-investition/@immo.getId()", $( "#new-investition-form" ).serialize())
+                    .done(function( data ) {
+                        $( "#new-investition-form" )[0].reset();
+                        $('#investition-table').append('<tr id="investition-'+data.id+'"><td>'+data.kosten+'€</td><td>'+data.beschreibung+'</td><td>'+new Date(data.datum).toLocaleDateString()+'</td><td><button class="btn btn-danger pull-right" onclick="delinvestition('+data.id+')"><i class="glyphicon glyphicon-trash"></i></button> </td></tr>');
+                    });
+                });
+            });
+
+              function delinvestition (id){
+                $.get("/ajax/del-investition/"+id).done( function(data){
+                    $("#investition-"+id).remove();
+                });
+            }
+
+
+        </script>
     }

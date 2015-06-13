@@ -3,14 +3,21 @@
 # ~~~~
 
 # Home page
-GET         /                            controllers.Application.index()
-GET         /test                        controllers.Test.index()
-GET         /immobilie/create            controllers.ImmobilienController.create()
-POST        /immobilie/create            controllers.ImmobilienController.createSubmit()
-POST        /immobilie/update/:id        controllers.ImmobilienController.editSubmit(id: Integer)
-GET         /immobilie/update/:id        controllers.ImmobilienController.update(id: Integer)
-GET         /immobilie/delete/:id        controllers.ImmobilienController.delete(id: Integer)
-GET         /immobilie/:id               controllers.ImmobilienController.index(id: Integer)
+GET         /                                controllers.Application.index()
+
+GET         /immobilie/create                controllers.ImmobilienController.create()
+POST        /immobilie/create                controllers.ImmobilienController.createSubmit()
+POST        /immobilie/update/:id            controllers.ImmobilienController.editSubmit(id: Integer)
+GET         /immobilie/update/:id            controllers.ImmobilienController.update(id: Integer)
+GET         /immobilie/delete/:id            controllers.ImmobilienController.delete(id: Integer)
+GET         /immobilie/:id                   controllers.ImmobilienController.index(id: Integer)
+
+POST        /ajax/new-mieter/:id             controllers.Ajax.newMieter(id: Integer)
+GET         /ajax/del-mieter/:id             controllers.Ajax.delMieter(id: Integer)
+
+POST        /ajax/new-investition/:id        controllers.Ajax.newInvestition(id: Integer)
+GET         /ajax/del-investition/:id        controllers.Ajax.delInvestition(id: Integer)
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)

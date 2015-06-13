@@ -2,6 +2,7 @@ package models;
 
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import play.data.Form;
 
 import javax.persistence.*;
@@ -31,12 +32,15 @@ public class Immobilie extends Model {
     @Lob
     public String imagePath;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Mieter> mieter;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Investition> investitionen;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Kredit> kredite;
 
