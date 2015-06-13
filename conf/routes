@@ -12,6 +12,8 @@ GET         /immobilie/update/:id            controllers.ImmobilienController.up
 GET         /immobilie/delete/:id            controllers.ImmobilienController.delete(id: Integer)
 GET         /immobilie/:id                   controllers.ImmobilienController.index(id: Integer)
 
+GET         /intro                           controllers.Application.intro()
+
 POST        /ajax/new-mieter/:id             controllers.Ajax.newMieter(id: Integer)
 GET         /ajax/del-mieter/:id             controllers.Ajax.delMieter(id: Integer)
 
