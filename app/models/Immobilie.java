@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  * Created by Philipp on 13.06.2015.
@@ -16,6 +17,9 @@ public class Immobilie extends Model {
     private int id;
 
     private String name;
+
+    @Lob
+    public byte[] image;
 
     public static Finder<Long,Immobilie> find = new Finder<>(Long.class, Immobilie.class);
 }
