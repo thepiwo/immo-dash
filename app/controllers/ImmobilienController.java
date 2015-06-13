@@ -1,6 +1,8 @@
 package controllers;
 
+import models.Immobilie;
 import play.mvc.Controller;
+import play.mvc.Result;
 
 /**
  * Created by fa on 13.06.15.
