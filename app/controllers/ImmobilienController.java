@@ -3,8 +3,6 @@ package controllers;
 import models.Immobilie;
 import play.Logger;
 import play.Play;
-import play.data.DynamicForm;
-import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -14,9 +12,8 @@ import views.html.editImmo;
 import views.html.showImmo;
 
 import java.io.File;
-import java.nio.file.Files;
 
-import static controllers.helper.imageHelper.moveFile;
+import static controllers.helpers.imageHelper.moveFile;
 
 public class ImmobilienController extends Controller {
 
