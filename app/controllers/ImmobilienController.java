@@ -16,6 +16,8 @@ import views.html.showImmo;
 import java.io.File;
 import java.nio.file.Files;
 
+import static controllers.helper.imageHelper.moveFile;
+
 public class ImmobilienController extends Controller {
 
     public Result create() {
@@ -73,11 +75,15 @@ public class ImmobilienController extends Controller {
         if (picture != null) {
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
-            File newImage = new File(Play.application().path().getAbsolutePath() + "public/images/immobilien/" + immo.getId() + "_" + fileName);
+            File newImage = new File(Play.application().path().getAbsolutePath() + "/public/images/immobilien/" + immo.getId() + "_" + fileName);
             File file = picture.getFile();
-            file.renameTo(newImage);
+            moveFile(file, newImage);
+
+            Logger.info(newImage.getAbsolutePath());
 
             immo.setImagePath(immo.getId() + "_" + fileName);
+
+
         }
 
         immo.save();
