@@ -23,8 +23,7 @@ public class ImmobilienController extends Controller {
 
     public Result createSubmit() {
         Immobilie immo = Immobilie.immoForm.bindFromRequest().get();
-        immo.save();
-        immo.refresh();
+
         Http.MultipartFormData body = request().body().asMultipartFormData();
         Http.MultipartFormData.FilePart picture = body.getFile("picture");
 
@@ -39,7 +38,8 @@ public class ImmobilienController extends Controller {
 
             immo.setImagePath(immo.getId() + "_" + fileName);
         }
-
+        immo.save();
+        immo.refresh();
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
 

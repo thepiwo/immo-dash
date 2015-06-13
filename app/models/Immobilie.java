@@ -138,7 +138,6 @@ public class Immobilie extends Model {
 
     public double getWert() {
         return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
-        return getKaufPreis() - getKrediteSum() - getAbschreibungenSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 
     public ArrayList<Double> calculateWert(double wertsteigerungInProzent) {
