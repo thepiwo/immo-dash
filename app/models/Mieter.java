@@ -15,6 +15,8 @@ public class Mieter {
     @Id
     private int id;
 
+    private String name;
+
     private double bewertung;
 
     private double miete;
@@ -33,6 +35,14 @@ public class Mieter {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getBewertung() {
