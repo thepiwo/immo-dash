@@ -20,7 +20,7 @@ public class Application extends Controller {
 
     public Result index() {
         List<Immobilie> immobilieList = Immobilie.find.findList();
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render(immobilieList));
     }
 
 
