@@ -3,6 +3,7 @@ package models;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import play.Logger;
 import play.data.Form;
 
 import javax.persistence.*;
@@ -144,29 +145,36 @@ public class Immobilie extends Model {
         return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 
-    public HashMap<Date, Double> calculateWert() {
-        int quartalKaufdatum = 1 + (getKaufDatum().getMonth()-1) / 3;
-        int jahrKaufdatum = getKaufDatum().getYear();
-        int quartalAktuell = 1 + (new Date().getMonth()-1) / 3;
-        int jahrAktuell = new Date().getYear();
-        HashMap<Date, Double> listWerte = new HashMap<Date, Double>();
-        for(int i=0;i<(jahrAktuell - jahrKaufdatum)*4+quartalAktuell-quartalKaufdatum;i++)
-        {
-//            Double wert = new Double(getKaufPreis()*(1+
-//                    (PreisindexVDP.find.where().eq("quartal",quartalKaufdatum+i+1).eq("jahr",jahrKaufdatum+(i+quartalKaufdatum)%4).setMaxRows(1).findUnique().getValue())-
-//                    PreisindexVDP.find.where().eq("quartal",quartalKaufdatum).eq("jahr",jahrKaufdatum).setMaxRows(1).findUnique().getValue()));
+    public double calculateWert(long ts) {
 
+        Date date = new Date(ts);
 
-            //Debug  ach ja: daten liegen unter public/data!
-            Double wert=PreisindexVDP.find.where().eq("quartal", quartalKaufdatum + i + 1).eq("jahr", jahrKaufdatum + (i + quartalKaufdatum) % 4).setMaxRows(1).findUnique().getValue();
-            Date date = new Date();
-
-
-            date.setDate(1);
-            date.setMonth(((quartalKaufdatum+i+1)*3-1)%12+1);
-            date.setYear(jahrKaufdatum + (i+quartalKaufdatum)%4);
-            listWerte.put(date, wert);
+        if (kaufDatum == null) {
+            return kaufPreis;
         }
-        return listWerte;
+        int quartalKaufdatum = 1 + (getKaufDatum().getMonth() - 1) / 3;
+        int jahrKaufdatum = 1900 + getKaufDatum().getYear();
+        int quartalAktuell = 1 + (date.getMonth() - 1) / 3;
+        int jahrAktuell = 1900 + date.getYear();
+
+        Logger.info("quartalKaufdatum: " + quartalKaufdatum);
+        Logger.info("jahrKaufdatum: " + jahrKaufdatum);
+        Logger.info("quartalAktuell: " + quartalAktuell);
+        Logger.info("jahrAktuell: " + jahrAktuell);
+
+        double wertIndexJahr = PreisindexVDP.find.where().eq("quartal", quartalAktuell).eq("jahr", jahrAktuell).setMaxRows(1).findUnique().getValue();
+
+        Logger.info("wertIndexJahr: "+wertIndexJahr);
+
+        double wertIndexKauf = PreisindexVDP.find.where().eq("quartal", quartalKaufdatum).eq("jahr", jahrKaufdatum).setMaxRows(1).findUnique().getValue();
+
+        Logger.info("wertIndexKauf: "+wertIndexKauf);
+
+
+        double wert = kaufPreis + kaufPreis*((wertIndexJahr - wertIndexKauf)/100);
+
+        Logger.info("Wert: "+wert);
+
+        return wert;
     }
 }
