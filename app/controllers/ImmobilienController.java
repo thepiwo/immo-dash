@@ -10,6 +10,10 @@ import views.html.showImmo;
 public class ImmobilienController extends Controller {
 
     public Result create() {
+        return ok(createImmo.render(Immobilie.immoForm));
+    }
+
+    public Result createSubmit() {
         Immobilie immo = Immobilie.immoForm.bindFromRequest().get();
         immo.save();
         immo.refresh();
