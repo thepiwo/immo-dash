@@ -1,17 +1,45 @@
 @(immo: models.Immobilie)
 
-@main("Immobilie: "+ immo.getName()) {
+    @main("Immobilie: " + immo.getName()) {
 
-    <h1>@immo.getName()</h1>
+        <h1>@immo.getName()</h1>
+        <div class="container">
+            <div class="panel with-nav-tabs panel-info">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#dashboard" data-toggle="tab">Übersicht</a></li>
+                        <li><a href="#mieter" data-toggle="tab">Mieter</a></li>
+                        <li><a href="#abschreibungen" data-toggle="tab">Abschreibungen</a></li>
+                        <li><a href="#investitionen" data-toggle="tab">Investitionen</a></li>
+                        <li><a href="#kredite" data-toggle="tab">Kredite</a></li>
 
-    <div class="media">
-        <img class="media-object" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
-    </div>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="dashboard">
 
-    <a class="btn btn-default" href="@routes.ImmobilienController.create()" role="button">Neue Immobilie anlegen</a>
+                            <div class="container">
+                                <div class="media" style="padding: 10px;">
+                                    <img class="media-object full-image" src="@routes.Assets.versioned("images/immobilien/" + immo.getImagePath())"> </img>
+                                </div>
+                            </div>
 
-    <a class="btn btn-default" href="@routes.ImmobilienController.update(immo.getId())" role="button">Basisdaten bearbeitenn</a>
-    <a class="btn btn-default" href="@routes.ImmobilienController.delete(immo.getId())" role="button">Immobilie löschen</a>
+                            <div class="container">
+                                <a class="btn btn-default" href="@routes.ImmobilienController.update(immo.getId())" role="button">
+                                    Basisdaten bearbeitenn</a>
+                                <a class="btn btn-default" href="@routes.ImmobilienController.delete(immo.getId())" role="button">
+                                    Immobilie löschen</a>
+                            </div>
 
+                        </div>
+                        <div class="tab-pane fade" id="mieter">Info 2</div>
+                        <div class="tab-pane fade" id="abschreibungen">Info 3</div>
+                        <div class="tab-pane fade" id="investitionen">Info 4</div>
+                        <div class="tab-pane fade" id="kredite">Info 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-}
+    }
