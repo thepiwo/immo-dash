@@ -35,7 +35,7 @@
                     <ul class="nav navbar-nav">
                         <li class="@if(title.contains("Dashboard")) {active}"><a href="@controllers.routes.Application.dashboard()">Dashboard</a></li>
                         <li class="@if(title.contains("Immobilie")) {active}"><a href="@controllers.routes.Application.immobilien()">Immobilien</a></li>
-                        <li class="@if(title.contains("Intro")) {active}"><a href="@controllers.routes.Application.intro()">Über uns</a></li>
+                        <li class="@if(title.contains("Über")) {active}"><a href="@controllers.routes.Application.intro()">Über uns</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,12 +45,13 @@
         @content
         </div>
 
-        <div class="footer navbar-fixed-bottom">
+        @*<div class="footer navbar-fixed-bottom">
             <div class="container text-center">
                 <div class="text-muted">
                     <span>bester footer</span>
                 </div>
             </div>
         </div>
+        *@
     </body>
 </html>
