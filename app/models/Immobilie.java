@@ -33,9 +33,6 @@ public class Immobilie extends Model {
     List<Mieter> mieter;
 
     @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
-    List<Abschreibung> abschreibungen;
-
-    @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
     List<Investition> investitionen;
 
     @OneToMany(mappedBy = "immobilie", cascade = CascadeType.ALL)
@@ -67,14 +64,6 @@ public class Immobilie extends Model {
 
     public void setMieter(List<Mieter> mieter) {
         this.mieter = mieter;
-    }
-
-    public List<Abschreibung> getAbschreibungen() {
-        return abschreibungen;
-    }
-
-    public void setAbschreibungen(List<Abschreibung> abschreibungen) {
-        this.abschreibungen = abschreibungen;
     }
 
     public List<Investition> getInvestitionen() {
@@ -117,14 +106,6 @@ public class Immobilie extends Model {
         this.kaufDatum = kaufDatum;
     }
 
-    public double getAbschreibungenSum() {
-        double abschreibungensum = 0.0;
-        for (Abschreibung abschreibung : abschreibungen) {
-            abschreibungensum += abschreibung.getKosten();
-        }
-        return abschreibungensum;
-    }
-
     public double getInvestitionenSum() {
         double investitionssum = 0.0;
         for (Investition investition : investitionen) {
@@ -141,11 +122,20 @@ public class Immobilie extends Model {
         return kreditesum;
     }
 
+    public double getMietSum() {
+        double mietsum = 0.0;
+        for (Mieter miet : mieter) {
+            mietsum += miet.getMiete();
+        }
+        return mietsum;
+    }
+
     public static Finder<Long, Immobilie> find = new Finder<>(Long.class, Immobilie.class);
 
     public static Form<Immobilie> immoForm = Form.form(Immobilie.class);
 
     public double getWert() {
+        return getKaufPreis() - getKrediteSum() - getInvestitionenSum() * Math.exp(-0.04);
         return getKaufPreis() - getKrediteSum() - getAbschreibungenSum() - getInvestitionenSum() * Math.exp(-0.04);
     }
 

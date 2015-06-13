@@ -4,11 +4,19 @@
     <h1>Immobilie anlegen</h1>
 
 
-@helper.form(action = routes.ImmobilienController.createSubmit()) {
+    @helper.form(action = routes.ImmobilienController.createSubmit(), 'enctype -> "multipart/form-data") {
 
-    @helper.inputText(immoform("name"))
-    @helper.inputText(immoform("imagePath"))
-    <input type="submit"/>
+        @helper.inputText(immoform("name"))
 
+        @helper.inputDate(immoform("kaufDatum"))
 
-}}
+        @helper.inputText(immoform("kaufPreis"))
+
+        @helper.inputText(immoform("typ"))
+
+        <input type="file" name="picture"/>
+
+        <input type="submit"/>
+
+    }
+}
