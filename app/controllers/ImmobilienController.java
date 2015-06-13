@@ -7,19 +7,4 @@ import play.mvc.Controller;
  */
 public class ImmobilienController extends Controller {
 
-    public addImmo(){
-
-    }
-
-    public showImmo(){
-
-    }
-
-    public updateImmo(){
-
-    }
-
-    public deleteImmo(){
-
-    }
 }

@@ -3,9 +3,8 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Philipp on 13.06.2015.
@@ -20,6 +19,15 @@ public class Immobilie extends Model {
 
     @Lob
     public String imagePath;
+
+    @OneToMany(mappedBy = "immobilie")
+    List<Mieter> mieter;
+
+    @OneToMany(mappedBy = "immobilie")
+    List<Abschreibung> abschreibungen;
+
+    @OneToMany(mappedBy = "immobilie")
+    List<Investition> investitionen;
 
     public int getId() {
         return id;
@@ -41,5 +49,5 @@ public class Immobilie extends Model {
         this.imagePath = imagePath;
     }
 
-    public static Finder<Long,Immobilie> find = new Finder<>(Long.class, Immobilie.class);
+    public static Finder<Long, Immobilie> find = new Finder<>(Long.class, Immobilie.class);
 }
