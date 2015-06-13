@@ -3,13 +3,10 @@
     <h1>Immobilie anlegen</h1>
 
 
-    @helper.form(action = routes.ImmobilienController.create()) {
-        @helper.inputText(immoform("name"))
-        @helper.inputText(immoform("imagePath"))
-        @helper.inputText(immoform("imagePath"))
-        <input type="submit"/>
+@helper.form(action = routes.ImmobilienController.create()) {
+    @helper.inputText(immoform("name"))
+    @helper.inputText(immoform("imagePath"))
+    <input type="submit"/>
 
-
-    }
 
 }
