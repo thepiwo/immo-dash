@@ -14,15 +14,8 @@ public class Application extends Controller {
         return ok(test.render("blub"));
     }
 
-    public Result getImage() {
-        return ok();
-    }
-
     public Result index() {
         List<Immobilie> immobilieList = Immobilie.find.findList();
         return ok(index.render(immobilieList));
     }
-
-
-
 }
