@@ -1,0 +1,92 @@
+@(immobilieList: java.util.List[models.Immobilie])
+
+@main("Immobilien") {
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Eigene Immobilien</div>
+
+        @if(immobilieList.size() > 0) {
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Informationen
+                    </th>
+                    <th>
+                        Wertverlauf
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+
+                @for(immobilie <- immobilieList) {
+                    <tr class="clickable-row" data-href="@controllers.routes.ImmobilienController.index(immobilie.getId())">
+                        <td><h2>@immobilie.getName()</h2></td>
+                        <td>
+                            <div class="row space-row">@immobilie.getKaufPreis()€ Kaufpreis</div>
+                            <div class="row space-row">@immobilie.getMieter().size() Mieter</div>
+                            <div class="row space-row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
+                            <div class="row space-row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
+                            <div class="row space-row bold-text">@immobilie.getWert()€ Wert</div>
+                        </td>
+
+                        <td>
+                            <div class="chart" id="parent@immobilie.getId()">
+                                <canvas id="chart@immobilie.getId()"></canvas>
+                            </div>
+
+                            <script type="application/javascript">
+                                var c1 = document.getElementById("chart@immobilie.getId()");
+
+                                var parent = document.getElementById("parent@immobilie.getId()");
+                                c1.width = parent.offsetWidth;
+                                c1.height = parent.offsetHeight;
+
+                                var data1 = {
+                                  labels: ["M", "T", "W", "T", "F", "S", "S"],
+                                  datasets: [{
+                                    fillColor: "rgba(178,178,178,.1)",
+                                    strokeColor: "rgba(178,178,178,1)",
+                                    pointColor: "#123",
+                                    pointStrokeColor: "rgba(178,178,178,1)",
+                                    data: [Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100), Math.floor((Math.random() * 200) + 100)]
+                                  }]
+                                }
+
+                                var options1 = {
+                                  scaleFontColor: "rgba(178,178,178,1)",
+                                  scaleLineColor: "rgba(178,178,178,1)",
+                                  scaleGridLineColor: "transparent",
+                                  bezierCurve: false,
+                                  scaleOverride: true,
+                                  scaleSteps: 5,
+                                  scaleStepWidth: 100,
+                                  scaleStartValue: 0
+                                }
+
+                                new Chart(c1.getContext("2d")).Line(data1, options1)
+                            </script>
+                        </td>
+
+                        <td>
+                            <div class="media" style="padding: 6px;">
+                                <img class="media-object front-image" src="@routes.Assets.versioned("images/immobilien/" + immobilie.getImagePath())"> </img>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        } else {
+            <div class="panel-body"> <p>Noch keine Immobilien angelegt</p></div>
+        }
+    </div>
+    <row>
+        <a class="btn btn-default" href="@routes.ImmobilienController.create()" role="button">Neue Immobilie anlegen</a>
+    </row>
+
+
+}

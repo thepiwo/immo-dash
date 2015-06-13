@@ -14,9 +14,13 @@ public class Application extends Controller {
         return ok(test.render("blub"));
     }
 
-    public Result index() {
+    public Result dashboard(){
+        return ok(index.render());
+    }
+
+    public Result immobilien() {
         List<Immobilie> immobilieList = Immobilie.find.findList();
-        return ok(index.render(immobilieList));
+        return ok(immobilien.render(immobilieList));
     }
 
 

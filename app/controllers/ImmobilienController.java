@@ -58,7 +58,7 @@ public class ImmobilienController extends Controller {
             return redirect(routes.ImmobilienController.create());
         }
         immo.delete();
-        return redirect(routes.Application.index());
+        return redirect(routes.Application.immobilien());
 
     }
 

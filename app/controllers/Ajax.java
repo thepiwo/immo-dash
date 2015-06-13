@@ -2,6 +2,7 @@ package controllers;
 
 import models.Immobilie;
 import models.Investition;
+import models.Kredit;
 import models.Mieter;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -22,6 +23,12 @@ public class Ajax extends Controller {
     public Result delInvestition(int id) {
         Investition investition = Investition.find.where().eq("id", id).findUnique();
         investition.delete();
+        return ok("done");
+    }
+
+    public Result delKredit(int id) {
+        Kredit kredit = Kredit.find.where().eq("id", id).findUnique();
+        kredit.delete();
         return ok("done");
     }
 
@@ -88,5 +95,36 @@ public class Ajax extends Controller {
         investition.setImmobilie(immo);
         investition.save();
         return ok(Json.toJson(investition));
+    }
+
+    public Result newKredit(int id) {
+
+        Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+
+        Kredit kredit = new Kredit();
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String details = requestData.get("new-kredit-details");
+        double betrag = Double.parseDouble(requestData.get("new-kredit-betrag"));
+        double rate = Double.parseDouble(requestData.get("new-kredit-rate"));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date kreditVon = new Date();
+        Date kreditBis = new Date();
+
+        try {
+            kreditVon = formatter.parse(requestData.get("new-kredit-von"));
+            kreditBis = formatter.parse(requestData.get("new-kredit-bis"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        kredit.setDetails(details);
+        kredit.setBetrag(betrag);
+        kredit.setRate(rate);
+        kredit.setKreditStart(kreditVon);
+        kredit.setKreditEnde(kreditBis);
+        kredit.setImmobilie(immo);
+        kredit.save();
+        return ok(Json.toJson(kredit));
     }
 }

@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET         /                                controllers.Application.index()
+GET         /                                controllers.Application.dashboard()
 
 GET         /immobilie/create                controllers.ImmobilienController.create()
 POST        /immobilie/create                controllers.ImmobilienController.createSubmit()
@@ -11,6 +11,7 @@ POST        /immobilie/update/:id            controllers.ImmobilienController.ed
 GET         /immobilie/update/:id            controllers.ImmobilienController.update(id: Integer)
 GET         /immobilie/delete/:id            controllers.ImmobilienController.delete(id: Integer)
 GET         /immobilie/:id                   controllers.ImmobilienController.index(id: Integer)
+GET         /immobilie                       controllers.Application.immobilien()
 
 GET         /intro                           controllers.Application.intro()
 
@@ -19,6 +20,9 @@ GET         /ajax/del-mieter/:id             controllers.Ajax.delMieter(id: Inte
 
 POST        /ajax/new-investition/:id        controllers.Ajax.newInvestition(id: Integer)
 GET         /ajax/del-investition/:id        controllers.Ajax.delInvestition(id: Integer)
+
+POST        /ajax/new-kredit/:id             controllers.Ajax.newKredit(id: Integer)
+GET         /ajax/del-kredit/:id             controllers.Ajax.delKredit(id: Integer)
 
 
 # Map static resources from the /public folder to the /assets URL path
