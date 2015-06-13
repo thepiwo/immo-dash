@@ -1,19 +1,22 @@
 package models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by fa on 13.06.15.
  */
+@Entity
 public class PreisindexVDP {
-    @Column(columnDefinition = "jahr")
+    @Id
+    private int id;
+    @Column(columnDefinition = "int")
     private int jahr;
-
-    @Column(columnDefinition = "quartal")
+    @Column(columnDefinition = "int")
     private int quartal;
-
-    @Column(columnDefinition = "value")
+    @Column(columnDefinition = "double")
     private double value;
 
     public int getJahr() {
@@ -27,4 +30,8 @@ public class PreisindexVDP {
     public double getValue() {
         return value;
     }
+
+
+
+
 }
