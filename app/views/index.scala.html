@@ -1,16 +1,16 @@
-@(message: String)
+@(immobilieList: java.util.List[models.Immobilie])
 
 @main("Welcome to Play ö") {
 
     <h1>Eigene Immobilien</h1>
 
     <!--<a href="@routes.Test.index()">test2</a>-->
-
-    <h2> Haus1 </h2>
-    <div class="media">
-        <img src="@routes.Assets.versioned("images/haus1.jpg")"> </img>
-    </div>
-
+    @for(immobilie <- immobilieList) {
+        <h2> @immobilie.getName() </h2>
+        <div class="media">
+            <img class="media-object" src="@routes.Assets.versioned("images/haus1.jpg")"> </img>
+        </div>
+    }
 
     <h2 id="Mieter">Mieter</h2>
     <input type="text" name="Anzahl der Mieter">

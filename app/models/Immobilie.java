@@ -21,5 +21,25 @@ public class Immobilie extends Model {
     @Lob
     public byte[] image;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public static Finder<Long,Immobilie> find = new Finder<>(Long.class, Immobilie.class);
 }
