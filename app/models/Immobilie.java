@@ -20,6 +20,8 @@ public class Immobilie extends Model {
 
     private double kaufpreis;
 
+    private String typ;
+
     @Lob
     public String imagePath;
 
@@ -93,6 +95,14 @@ public class Immobilie extends Model {
 
     public void setKaufpreis(double kaufpreis) {
         this.kaufpreis = kaufpreis;
+    }
+
+    public String getTyp() {
+        return typ;
+    }
+
+    public void setTyp(String typ) {
+        this.typ = typ;
     }
 
     public double getAbschreibungenSum() {
