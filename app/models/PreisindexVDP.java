@@ -1,5 +1,7 @@
 package models;
 
+import com.avaje.ebean.Model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +11,7 @@ import java.util.Date;
  * Created by fa on 13.06.15.
  */
 @Entity
-public class PreisindexVDP {
+public class PreisindexVDP extends Model {
     @Id
     private int id;
     @Column(columnDefinition = "int")
