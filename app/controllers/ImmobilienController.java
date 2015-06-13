@@ -29,6 +29,15 @@ public class ImmobilienController extends Controller {
     }
 
 
+    public Result delete(int id){
+        Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+        if (immo == null) {
+            return redirect(routes.ImmobilienController.create());
+        }
+        immo.delete();
+        return redirect(routes.Application.index());
+
+    }
 
 
 }
