@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import play.data.Form;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +19,12 @@ public class Immobilie extends Model {
 
     private String name;
 
-    private double kaufpreis;
+    private double kaufPreis;
+
+    @Column(columnDefinition = "date")
+    private Date kaufDatum;
+
+    private String typ;
 
     @Lob
     public String imagePath;
@@ -87,12 +93,28 @@ public class Immobilie extends Model {
         this.kredite = kredite;
     }
 
-    public double getKaufpreis() {
-        return kaufpreis;
+    public double getKaufPreis() {
+        return kaufPreis;
     }
 
-    public void setKaufpreis(double kaufpreis) {
-        this.kaufpreis = kaufpreis;
+    public void setKaufPreis(double kaufPreis) {
+        this.kaufPreis = kaufPreis;
+    }
+
+    public String getTyp() {
+        return typ;
+    }
+
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public Date getKaufDatum() {
+        return kaufDatum;
+    }
+
+    public void setKaufDatum(Date kaufDatum) {
+        this.kaufDatum = kaufDatum;
     }
 
     public double getAbschreibungenSum() {
