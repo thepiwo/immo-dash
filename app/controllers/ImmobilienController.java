@@ -21,6 +21,18 @@ public class ImmobilienController extends Controller {
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
 
+    public Result editSubmit(int id) {
+        Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+        Immobilie immoedited = Immobilie.immoForm.bindFromRequest().get();
+        immo.setImagePath(immoedited.getImagePath());
+        immo.setKaufDatum(immoedited.getKaufDatum());
+        immo.setKaufPreis(immoedited.getKaufPreis());
+        immo.setName(immoedited.getName());
+        immo.setTyp(immoedited.getTyp());
+        immo.save();
+        return redirect(routes.ImmobilienController.index(immo.getId()));
+    }
+
     public Result index(int id) {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
         if (immo == null) {
@@ -30,7 +42,7 @@ public class ImmobilienController extends Controller {
     }
 
 
-    public Result delete(int id){
+    public Result delete(int id) {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
         if (immo == null) {
             return redirect(routes.ImmobilienController.create());
@@ -40,13 +52,13 @@ public class ImmobilienController extends Controller {
 
     }
 
-    public Result update(int id){
+    public Result update(int id) {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
         if (immo == null) {
             return redirect(routes.ImmobilienController.create());
         }
 
-        return ok(editImmo.render(Immobilie.immoForm.fill(immo),immo));
+        return ok(editImmo.render(Immobilie.immoForm.fill(immo), immo));
 
     }
 

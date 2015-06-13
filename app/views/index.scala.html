@@ -24,10 +24,10 @@
 
 
                 @for(immobilie <- immobilieList) {
-                    <tr>
+                    <tr class="clickable-row" data-href="@controllers.routes.ImmobilienController.index(immobilie.getId())">
                         <td><h2>@immobilie.getName()</h2></td>
                         <td>
-                            <div class="row">@immobilie.getKaufpreis()€ Kaufpreis</div>
+                            <div class="row">@immobilie.getKaufPreis()€ Kaufpreis</div>
                             <div class="row">@immobilie.getMieter().size() Mieter</div>
                             <div class="row">@immobilie.getInvestitionenSum()€ geplante Investitonen</div>
                             <div class="row">@immobilie.getKrediteSum()€ Verbindlichkeiten</div>
@@ -72,7 +72,7 @@
                         </td>
 
                         <td>
-                            <div class="media">
+                            <div class="media" style="padding: 6px;">
                                 <img class="media-object front-image" src="@routes.Assets.versioned("images/immobilien/" + immobilie.getImagePath())"> </img>
                             </div>
                         </td>

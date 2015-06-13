@@ -6,7 +6,7 @@
 
 
 
-    @helper.form(action = routes.ImmobilienController.createSubmit()) {
+    @helper.form(action = routes.ImmobilienController.editSubmit(immo.getId())) {
         @helper.inputText(immoform("name"))
         @helper.inputText(immoform("imagePath"))
         <input type="submit"/>
