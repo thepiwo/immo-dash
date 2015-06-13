@@ -18,6 +18,8 @@ public class Immobilie extends Model {
 
     private String name;
 
+    private double kaufpreis;
+
     @Lob
     public String imagePath;
 
@@ -29,6 +31,9 @@ public class Immobilie extends Model {
 
     @OneToMany(mappedBy = "immobilie")
     List<Investition> investitionen;
+
+    @OneToMany(mappedBy = "immobilie")
+    List<Kredit> kredite;
 
     public int getId() {
         return id;
@@ -72,6 +77,46 @@ public class Immobilie extends Model {
 
     public void setInvestitionen(List<Investition> investitionen) {
         this.investitionen = investitionen;
+    }
+
+    public List<Kredit> getKredite() {
+        return kredite;
+    }
+
+    public void setKredite(List<Kredit> kredite) {
+        this.kredite = kredite;
+    }
+
+    public double getKaufpreis() {
+        return kaufpreis;
+    }
+
+    public void setKaufpreis(double kaufpreis) {
+        this.kaufpreis = kaufpreis;
+    }
+
+    public double getAbschreibungenSum() {
+        double abschreibungensum = 0.0;
+        for (Abschreibung abschreibung : abschreibungen) {
+            abschreibungensum += abschreibung.getKosten();
+        }
+        return abschreibungensum;
+    }
+
+    public double getInvestitionenSum() {
+        double investitionssum = 0.0;
+        for (Investition investition : investitionen) {
+            investitionssum += investition.getKosten();
+        }
+        return investitionssum;
+    }
+
+    public double getKrediteSum() {
+        double kreditesum = 0.0;
+        for (Kredit kredit : kredite) {
+            kreditesum += kredit.getBetrag();
+        }
+        return kreditesum;
     }
 
     public static Finder<Long, Immobilie> find = new Finder<>(Long.class, Immobilie.class);
