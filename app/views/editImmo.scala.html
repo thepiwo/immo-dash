@@ -8,7 +8,9 @@
 
     @helper.form(action = routes.ImmobilienController.editSubmit(immo.getId())) {
         @helper.inputText(immoform("name"))
-        @helper.inputText(immoform("imagePath"))
+
+        <input type="file" name="picture"/>
+
         <input type="submit"/>
 
 
