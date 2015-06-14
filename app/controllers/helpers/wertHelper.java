@@ -2,6 +2,7 @@ package controllers.helpers;
 
 import models.Immobilie;
 import models.Kredit;
+import play.Logger;
 
 import java.util.List;
 
@@ -56,6 +57,8 @@ public class wertHelper {
         }
         String scaleString = scale + "";
         scale = Integer.parseInt("1" + nulltimes(scaleString.length() - 1));
+        Logger.info("Scale: "+scale);
+
         return scale;
     }
 
