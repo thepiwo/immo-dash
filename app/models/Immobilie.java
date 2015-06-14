@@ -3,14 +3,11 @@ package models;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import play.Logger;
 import play.data.Form;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.*;
-import java.lang.Double;
 
 /**
  * Created by Philipp on 13.06.2015.
