@@ -32,9 +32,29 @@ public class wertHelper {
         int maxwert = 1;
         List<Immobilie> immobilieList = Immobilie.find.findList();
         for (Immobilie immobilie : immobilieList) {
-            int wert = (int) ((immobilie.getKaufPreis() * 1.20) / 100);
+            int wert = (int) ((immobilie.getKaufPreis() * 1.20) / getScale());
             maxwert += wert;
         }
         return maxwert;
+    }
+
+    public static int getScale() {
+        int scale = 1;
+        List<Immobilie> immobilieList = Immobilie.find.findList();
+        for (Immobilie immobilie : immobilieList) {
+            int wert = (int) (immobilie.getKaufPreis() * 1.20);
+            scale += wert;
+        }
+        String scaleString = scale + "";
+        scale = Integer.parseInt("1" + nulltimes(scaleString.length() - 1));
+        return scale;
+    }
+
+    public static String nulltimes(int times) {
+        String nul = "";
+        for (int i = 0; i < times; i++) {
+            nul += "0";
+        }
+        return nul;
     }
 }

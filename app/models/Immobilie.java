@@ -9,6 +9,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static controllers.helpers.wertHelper.nulltimes;
+
 /**
  * Created by Philipp on 13.06.2015.
  */
@@ -165,7 +167,7 @@ public class Immobilie extends Model {
 
     public double getKreditAt(long ts) {
 
-        long daysplmin =(long) (46 * 24 * 60 * 60 * 1000);
+        long daysplmin = (long) (46 * 24 * 60 * 60 * 1000);
         double kreditvalue = 0.0;
 
         List<Kredit> kredits = Kredit.find.where().eq("immobilie_id", id).not(com.avaje.ebean.Expr.or(com.avaje.ebean.Expr.ge("kredit_start", new Date(ts - daysplmin)), com.avaje.ebean.Expr.le("kredit_ende", new Date(ts + daysplmin)))).findList();
@@ -177,8 +179,15 @@ public class Immobilie extends Model {
     }
 
     public int getScaleSteps() {
-        int scale = (int) Math.ceil((kaufPreis * 1.2) / 100);
+        int scale = (int) Math.ceil((kaufPreis * 1.2) / getScale());
 
+        return scale;
+    }
+
+    public int getScale() {
+        int scale = (int) (kaufPreis * 1.20);
+        String scaleString = scale + "";
+        scale = Integer.parseInt("1" + nulltimes(scaleString.length() - 1));
         return scale;
     }
 }
