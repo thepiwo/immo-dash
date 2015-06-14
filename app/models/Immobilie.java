@@ -167,7 +167,7 @@ public class Immobilie extends Model {
 
     public double getKreditAt(long ts) {
 
-        long daysplmin = (long) (46 * 24 * 60 * 60 * 1000);
+        long daysplmin = 46L * 24L * 60L * 60L * 1000L;
         double kreditvalue = 0.0;
 
         List<Kredit> kredits = Kredit.find.where().eq("immobilie_id", id).not(com.avaje.ebean.Expr.or(com.avaje.ebean.Expr.ge("kredit_start", new Date(ts - daysplmin)), com.avaje.ebean.Expr.le("kredit_ende", new Date(ts + daysplmin)))).findList();
@@ -176,6 +176,19 @@ public class Immobilie extends Model {
         }
 
         return kreditvalue;
+    }
+
+    public double getInvestitionAt(long ts) {
+
+        long daysplmin = 46L * 24L * 60L * 60L * 1000L;
+        double geskosten = 0.0;
+
+        List<Investition> investition = Investition.find.where().eq("immobilie_id", id).between("datum", new Date(ts - daysplmin), new Date(ts + daysplmin)).findList();
+        for (Investition investitionen : investition) {
+            geskosten += investitionen.getKosten();
+        }
+
+        return geskosten;
     }
 
     public int getScaleSteps() {

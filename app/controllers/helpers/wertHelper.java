@@ -28,6 +28,15 @@ public class wertHelper {
         return gesKredit;
     }
 
+    public static double getAllInvestitionAt(long ts) {
+        double getInvest = 0.0;
+        List<Immobilie> immobilieList = Immobilie.find.findList();
+        for (Immobilie immobilie : immobilieList) {
+            getInvest += immobilie.getInvestitionAt(ts);
+        }
+        return getInvest;
+    }
+
     public static int getScaleSteps() {
         int maxwert = 1;
         List<Immobilie> immobilieList = Immobilie.find.findList();
