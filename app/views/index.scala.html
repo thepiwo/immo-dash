@@ -14,6 +14,47 @@
                 <div class="alert alert-warning"><strong>@investitionsCount Investitionen im nächsten Monat</strong>
                     insgesammt @(investitionsSum)€</div>
             }
+
+            <div class="chart_big" id="parent">
+                <canvas id="chartid"></canvas>
+            </div>
+            <script type="application/javascript">
+                                var c1 = document.getElementById("chartid");
+
+                                var parent = document.getElementById("parent");
+                                c1.width = parent.offsetWidth;
+                                c1.height = parent.offsetHeight;
+
+                                var data1 = {
+                                  labels: ["Q3 2012", "Q4 2012", "Q1 2013", "Q2 2013","Q3 2013", "Q4 2013", "Q1 2014", "Q2 2014", "Q3 2014", "Q4 2014", "Q1 2015"],
+                                  datasets: [{
+                                    fillColor: "rgba(0,178,0,.1)",
+                                    strokeColor: "rgba(0,178,0,1)",
+                                    pointColor: "#00ff00",
+                                    pointStrokeColor: "rgba(0,178,0,1)",
+                                    data: [@{controllers.helpers.wertHelper.calculateAllWert(1348956000000L)},@{controllers.helpers.wertHelper.calculateAllWert(1356908400000L)},@{controllers.helpers.wertHelper.calculateAllWert(1364684400000L)},@{controllers.helpers.wertHelper.calculateAllWert(1372543200000L)},@{controllers.helpers.wertHelper.calculateAllWert(1380492000000L)},@{controllers.helpers.wertHelper.calculateAllWert(1388444400000L)},@{controllers.helpers.wertHelper.calculateAllWert(1396216800000L)},@{controllers.helpers.wertHelper.calculateAllWert(1404079200000L)},@{controllers.helpers.wertHelper.calculateAllWert(1412028000000L)},@{controllers.helpers.wertHelper.calculateAllWert(1419980400000L)},@{controllers.helpers.wertHelper.calculateAllWert(1427752800000L)}]
+                                  },{
+                                    fillColor: "rgba(178,0,0,.1)",
+                                    strokeColor: "rgba(178,0,0,1)",
+                                    pointColor: "#ff0000",
+                                    pointStrokeColor: "rgba(178,0,0,1)",
+                                    data: [@{controllers.helpers.wertHelper.getAllKreditAt(1348956000000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1356908400000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1364684400000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1372543200000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1380492000000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1388444400000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1396216800000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1404079200000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1412028000000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1419980400000L)},@{controllers.helpers.wertHelper.getAllKreditAt(1427752800000L)}]
+                                  }]
+                                }
+
+                                var options1 = {
+                                  scaleFontColor: "rgba(178,178,178,1)",
+                                  scaleLineColor: "rgba(178,178,178,1)",
+                                  scaleGridLineColor: "transparent",
+                                  bezierCurve: false,
+                                  scaleOverride: true,
+                                  scaleSteps: @{controllers.helpers.wertHelper.getScaleSteps()},
+                                  scaleStepWidth: 100,
+                                  scaleStartValue: 0
+                                }
+
+                                new Chart(c1.getContext("2d")).Line(data1, options1)
+                            </script>
         </div>
     </div>
 }
