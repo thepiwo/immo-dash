@@ -59,8 +59,8 @@ public class wertHelper {
 
         String scaleString = scale + "";
 
-        int lenght = scaleString.length();
-        if (!scaleString.startsWith("1")) {
+        int lenght = scaleString.length() - 1;
+        if (scaleString.startsWith("1")) {
             lenght--;
         }
         scale = Integer.parseInt("1" + nulltimes(lenght));
