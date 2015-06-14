@@ -1,4 +1,4 @@
-@(immo: models.Immobilie)
+@(immo: models.Immobilie, transactions:java.util.List[java.lang.String])
 
     @main("Immobilie: " + immo.getName()) {
 
@@ -328,4 +328,16 @@
             });
 
         </script>
+
+
+    <div><h3>Letzte Transaktionen</h3>
+    <div class="container">
+    @for(trans <- transactions) {
+
+        <div class="row"><div class="well well-sm">@trans</div></div>
+    }
+
+    </div>
+
+    </div>
     }

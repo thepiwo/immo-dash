@@ -1,0 +1,314 @@
+{
+  "AD_MODEL": {
+    "DFP_ENABLED_KEYWORD": "INDEX-20735,INDEX",
+    "DFP_ENABLED": true,
+    "TYPE": "AD"
+  },
+  "COLORS": {
+    "BENCHMARKS": [
+      "#FF0F00",
+      "#FF9E01",
+      "#04D215",
+      "#0D52D1",
+      "#8A0CCF"
+    ],
+    "TYPE": "COLORS"
+  },
+  "PRICE_INDICATION_MAPPING": {
+    "VOLUME_UNIT": "Stück",
+    "CODE_MARKET": "@_DBBL",
+    "CODE_QUALITY_PRICE": "RLT",
+    "VOLUME_UNIT_SHORT": "Stk.",
+    "PRICE": "11.196,00",
+    "PERFORMANCE_ABS": "-132,00",
+    "DATETIME_PRICE_R": 1434143022476,
+    "PERFORMANCE_PCT": "-1,17%",
+    "PREVIOUS_LAST": "11.328,00",
+    "INDICATION_MAPPING": {
+      "NAME": "DAX",
+      "IS_INDICATION": false,
+      "IDENTIFIER": {
+        "DESCRIPTION": "index:dax",
+        "PROPERTIES": [
+          "STOCKPULSE_TITLE"
+        ],
+        "VALUE": "20735",
+        "IDENTIFIER": "2_20735_H20",
+        "URL_LIST": [
+          {
+            "TARGET": "WEBSITE",
+            "URL": "http://www.finanzen100.de/index/dax_H877766596_20735/",
+            "TYPE": "URL"
+          }
+        ],
+        "TYPE": "INDEX"
+      },
+      "ISIN": "DE0008469008",
+      "TYPE": "INDICATION_MAPPING",
+      "WKN": "846900"
+    },
+    "MONEY_UNIT": "EUR",
+    "LOW_R": 11070,
+    "ID_NOTATION": "14207349",
+    "LOW": "11.070,00",
+    "DATETIME_PRICE": "12.06.2015",
+    "FIRST_R": 11306.5,
+    "TYPE": "PRICE",
+    "UNIT": "Punkte",
+    "NAME": "DAX",
+    "PREVIOUS_LAST_R": 11328,
+    "HIGH_R": 11358.5,
+    "HIGH": "11.358,50",
+    "INDICATION_PROVIDER": "DEUTSCHE_BANK",
+    "IDENTIFIER": {
+      "CUSTOMER_INTEGRATION": "XMARKETS",
+      "DESCRIPTION": "index:dax",
+      "PROPERTIES": [
+        "INDICATION",
+        "DBX_PRODUCT"
+      ],
+      "VALUE": "14207349",
+      "IDENTIFIER": "2_14207349_H13",
+      "URL_LIST": [
+        {
+          "TARGET": "WEBSITE",
+          "URL": "http://www.finanzen100.de/index/db-dax_H128378787_14207349/",
+          "TYPE": "URL"
+        }
+      ],
+      "TYPE": "INDEX"
+    },
+    "EXTRIBUTOR": "Deutsche Bank",
+    "PERFORMANCE_PCT_R": -1.1653,
+    "UNIT_SHORT": "Pkt.",
+    "PRICE_R": 11196,
+    "IS_INDICATION": true,
+    "FIRST": "11.306,50"
+  },
+  "CHART": {
+    "M6": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&chart.xAxis.dateFormat=MMM&codeResolution=1d&key.codeMarket=_GER&timeSpan=6M",
+    "Y1": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&chart.xAxis.dateFormat=MMM&codeResolution=1d&key.codeMarket=_GER&timeSpan=1Y",
+    "WEEK": "http://c.finanzen100.de/bwcharts/images/finanzen100/tw/abv2_week.png?ID_NOTATION=20735&CODE_QUALITY_PRICE=DLY&key.codeMarket=_GER",
+    "HIST": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&key.codeMarket=_GER",
+    "W1": "http://c.finanzen100.de/bwcharts/images/finanzen100/tw/abv2_week.png?ID_NOTATION=20735&CODE_QUALITY_PRICE=DLY&key.codeMarket=_GER",
+    "Y5": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&chart.xAxis.dateFormat=MMM&codeResolution=1M&key.codeMarket=_GER&timeSpan=5Y",
+    "DEFAULT_PERIOD": "D1",
+    "INTRADAY": "http://c.finanzen100.de/bwcharts/images/finanzen100/intraday/abv2_intrdy.png?ID_NOTATION=20735&CODE_QUALITY_PRICE=DLY&key.codeMarket=_GER",
+    "IDENTIFIER": {
+      "DESCRIPTION": "index:dax",
+      "PROPERTIES": [
+        "STOCKPULSE_TITLE"
+      ],
+      "VALUE": "20735",
+      "IDENTIFIER": "2_20735_H20",
+      "URL_LIST": [
+        {
+          "TARGET": "WEBSITE",
+          "URL": "http://www.finanzen100.de/index/dax_H877766596_20735/",
+          "TYPE": "URL"
+        }
+      ],
+      "TYPE": "INDEX"
+    },
+    "M1": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&codeResolution=1d&key.codeMarket=_GER&timeSpan=1M",
+    "MAX": "http://c.finanzen100.de/bwcharts/images/finanzen100/plain/abv2_hist.png?ID_NOTATION=20735&chart.xAxis.dateFormat=MMM&codeResolution=1M&key.codeMarket=_GER&timeSpan=20Y",
+    "INSTRUMENT": {
+      "NAME": "DAX",
+      "IS_INDICATION": false,
+      "INDICATION_MAPPING": {
+        "NAME": "DAX",
+        "IS_INDICATION": true,
+        "INDICATION_PROVIDER": "DEUTSCHE_BANK",
+        "IDENTIFIER": {
+          "CUSTOMER_INTEGRATION": "XMARKETS",
+          "DESCRIPTION": "index:dax",
+          "PROPERTIES": [
+            "INDICATION",
+            "DBX_PRODUCT"
+          ],
+          "VALUE": "14207349",
+          "IDENTIFIER": "2_14207349_H13",
+          "URL_LIST": [
+            {
+              "TARGET": "WEBSITE",
+              "URL": "http://www.finanzen100.de/index/db-dax_H128378787_14207349/",
+              "TYPE": "URL"
+            }
+          ],
+          "TYPE": "INDEX"
+        },
+        "TYPE": "INDICATION_MAPPING"
+      },
+      "IDENTIFIER": {
+        "DESCRIPTION": "index:dax",
+        "PROPERTIES": [
+          "STOCKPULSE_TITLE"
+        ],
+        "VALUE": "20735",
+        "IDENTIFIER": "2_20735_H20",
+        "URL_LIST": [
+          {
+            "TARGET": "WEBSITE",
+            "URL": "http://www.finanzen100.de/index/dax_H877766596_20735/",
+            "TYPE": "URL"
+          }
+        ],
+        "TYPE": "INDEX"
+      },
+      "ISIN": "DE0008469008",
+      "TYPE": "INSTRUMENT",
+      "WKN": "846900"
+    },
+    "D1": "http://c.finanzen100.de/bwcharts/images/finanzen100/intraday/abv2_intrdy.png?ID_NOTATION=20735&CODE_QUALITY_PRICE=DLY&key.codeMarket=_GER",
+    "TYPE": "CHART"
+  },
+  "QUOTE": {
+    "VOLUME_UNIT": "Stück",
+    "CODE_MARKET": "_GER",
+    "CODE_QUALITY_PRICE": "DLY",
+    "VOLUME_UNIT_SHORT": "Stk.",
+    "PRICE": "11.196,49",
+    "PERFORMANCE_ABS": "-136,29",
+    "DATETIME_LOW_PRICE_1_YEAR": "16.10.2014",
+    "LOW_PRICE_1_YEAR_R": 8354.97,
+    "DATETIME_PRICE_R": 1434123900000,
+    "WKN": "846900",
+    "PERFORMANCE_PCT": "-1,20%",
+    "TOTAL_MONEY": "3,775 Mrd.",
+    "PREVIOUS_LAST": "11.332,78",
+    "DATETIME_HIGH_PRICE_1_YEAR_R": 1428667200000,
+    "HIGH_PRICE_1_YEAR_R": 12390.75,
+    "INDICATION_MAPPING": {
+      "NAME": "DAX",
+      "IS_INDICATION": true,
+      "INDICATION_PROVIDER": "DEUTSCHE_BANK",
+      "IDENTIFIER": {
+        "CUSTOMER_INTEGRATION": "XMARKETS",
+        "DESCRIPTION": "index:dax",
+        "PROPERTIES": [
+          "INDICATION",
+          "DBX_PRODUCT"
+        ],
+        "VALUE": "14207349",
+        "IDENTIFIER": "2_14207349_H13",
+        "URL_LIST": [
+          {
+            "TARGET": "WEBSITE",
+            "URL": "http://www.finanzen100.de/index/db-dax_H128378787_14207349/",
+            "TYPE": "URL"
+          }
+        ],
+        "TYPE": "INDEX"
+      },
+      "TYPE": "INDICATION_MAPPING"
+    },
+    "MONEY_UNIT": "EUR",
+    "LOW_R": 11069.36,
+    "LOW_PRICE_1_YEAR": "8.354,97",
+    "ID_NOTATION": "20735",
+    "DATETIME_PRICE": "12.06.2015",
+    "LOW": "11.069,36",
+    "FIRST_R": 11286.56,
+    "PERFORMANCE_PCT_1_YEAR": "+12,66%",
+    "TYPE": "QUOTE",
+    "HIGH_PRICE_1_YEAR": "12.390,75",
+    "PERFORMANCE_PCT_1_YEAR_R": 12.6555,
+    "UNIT": "Punkte",
+    "NAME": "DAX",
+    "PREVIOUS_LAST_R": 11332.78,
+    "HIGH_R": 11365.92,
+    "HIGH": "11.365,92",
+    "IDENTIFIER": {
+      "DESCRIPTION": "index:dax",
+      "PROPERTIES": [
+        "STOCKPULSE_TITLE"
+      ],
+      "VALUE": "20735",
+      "IDENTIFIER": "2_20735_H20",
+      "URL_LIST": [
+        {
+          "TARGET": "WEBSITE",
+          "URL": "http://www.finanzen100.de/index/dax_H877766596_20735/",
+          "TYPE": "URL"
+        }
+      ],
+      "TYPE": "INDEX"
+    },
+    "DATETIME_LOW_PRICE_1_YEAR_R": 1413460800000,
+    "EXTRIBUTOR": "Xetra",
+    "PERFORMANCE_PCT_R": -1.2026,
+    "ISIN": "DE0008469008",
+    "PERFORMANCE_ABS_1_YEAR_R": 1257.79,
+    "TOTAL_VOLUME": "88.895.886",
+    "UNIT_SHORT": "Pkt.",
+    "PRICE_R": 11196.49,
+    "PERFORMANCE_ABS_1_YEAR": "+1.257,79",
+    "IS_INDICATION": false,
+    "DATETIME_HIGH_PRICE_1_YEAR": "10.04.2015",
+    "FIRST": "11.286,56"
+  },
+  "_ET": 33,
+  "TOP_FLOP_INFO": {
+    "NUMBER_CONSTITUENTS": 30,
+    "MAX_VALUE": 1.4518,
+    "NUMBER_TOP": 1,
+    "INSTRUMENT": {
+      "NAME": "DAX",
+      "IS_INDICATION": false,
+      "INDICATION_MAPPING": {
+        "NAME": "DAX",
+        "IS_INDICATION": true,
+        "INDICATION_PROVIDER": "DEUTSCHE_BANK",
+        "IDENTIFIER": {
+          "CUSTOMER_INTEGRATION": "XMARKETS",
+          "DESCRIPTION": "index:dax",
+          "PROPERTIES": [
+            "INDICATION",
+            "DBX_PRODUCT"
+          ],
+          "VALUE": "14207349",
+          "IDENTIFIER": "2_14207349_H13",
+          "URL_LIST": [
+            {
+              "TARGET": "WEBSITE",
+              "URL": "http://www.finanzen100.de/index/db-dax_H128378787_14207349/",
+              "TYPE": "URL"
+            }
+          ],
+          "TYPE": "INDEX"
+        },
+        "TYPE": "INDICATION_MAPPING"
+      },
+      "IDENTIFIER": {
+        "DESCRIPTION": "index:dax",
+        "PROPERTIES": [
+          "STOCKPULSE_TITLE"
+        ],
+        "VALUE": "20735",
+        "IDENTIFIER": "2_20735_H20",
+        "URL_LIST": [
+          {
+            "TARGET": "WEBSITE",
+            "URL": "http://www.finanzen100.de/index/dax_H877766596_20735/",
+            "TYPE": "URL"
+          }
+        ],
+        "TYPE": "INDEX"
+      },
+      "ISIN": "DE0008469008",
+      "TYPE": "INSTRUMENT",
+      "WKN": "846900"
+    },
+    "NUMBER_EQUAL": 0,
+    "NUMBER_FLOP": 29,
+    "MIN_VALUE": -2.5427,
+    "TYPE": "TOP_FLOP_INFO"
+  },
+  "BASE_DATA": {
+    "NAME": "DAX PERFORMANCE INDEX",
+    "NAME_COUNTRY": "Deutschland",
+    "NAME_TYPE_INDEX": "Performance-Index",
+    "ISO_COUNTRY": "DE",
+    "TYPE": "INDEX_BASE_DATA"
+  }
+}

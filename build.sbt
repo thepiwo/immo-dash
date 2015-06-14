@@ -20,3 +20,5 @@ routesGenerator := InjectedRoutesGenerator
 libraryDependencies += evolutions
 
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.18"
+
+libraryDependencies += "me.figo" % "sdk" % "1.2.1"

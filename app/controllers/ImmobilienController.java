@@ -1,8 +1,15 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import me.figo.FigoException;
+import me.figo.FigoSession;
+import me.figo.models.Transaction;
 import models.Immobilie;
 import play.Logger;
 import play.Play;
+import play.libs.F;
+import play.libs.ws.WS;
+import play.libs.ws.WSResponse;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -12,6 +19,8 @@ import views.html.editImmo;
 import views.html.showImmo;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static controllers.helpers.imageHelper.moveFile;
 
@@ -43,12 +52,22 @@ public class ImmobilienController extends Controller {
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
 
-    public Result index(int id) {
+    public Result index(int id) throws FigoException, IOException  {
         Immobilie immo = Immobilie.find.where().eq("id", id).findUnique();
+
         if (immo == null) {
             return redirect(routes.ImmobilienController.create());
         }
-        return ok(showImmo.render(immo));
+
+        // Letzten Zahlungen abrufen
+        FigoSession session = new FigoSession("ASHWLIkouP2O6_bgA2wWReRhletgWKHYjLqDaqb0LFfamim9RjexTo22ujRIP_cjLiRiSyQXyt2kM1eXU2XLFZQ0Hro15HikJQT_eNeT_9XQ");
+        ArrayList<String> transactions =new ArrayList<>();
+
+        for (Transaction transaction : session.getTransactions(session.getAccount("A1.1"))) {
+            transactions.add(transaction.getPurposeText());
+        }
+
+        return ok(showImmo.render(immo, transactions));
     }
 
 
@@ -98,6 +117,7 @@ public class ImmobilienController extends Controller {
         immo.refresh();
         return redirect(routes.ImmobilienController.index(immo.getId()));
     }
+
 
 
 }
