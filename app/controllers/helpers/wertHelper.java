@@ -55,11 +55,16 @@ public class wertHelper {
             int wert = (int) (immobilie.getKaufPreis() * 1.20);
             scale += wert;
         }
-        Logger.info("Scale: "+scale);
+        Logger.info("Scale: " + scale);
 
         String scaleString = scale + "";
-        scale = Integer.parseInt("1" + nulltimes(scaleString.length() - 1));
-        Logger.info("Scale: "+scale);
+
+        int lenght = scaleString.length();
+        if (!scaleString.startsWith("1")) {
+            lenght--;
+        }
+        scale = Integer.parseInt("1" + nulltimes(lenght));
+        Logger.info("Scale: " + scale);
 
         return scale;
     }
