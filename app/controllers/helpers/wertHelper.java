@@ -32,11 +32,8 @@ public class wertHelper {
         int maxwert = 1;
         List<Immobilie> immobilieList = Immobilie.find.findList();
         for (Immobilie immobilie : immobilieList) {
-
-            int wert = (int) ((immobilie.getKaufPreis() * 1.20)/100);
-            if (wert > maxwert) {
-                maxwert = wert;
-            }
+            int wert = (int) ((immobilie.getKaufPreis() * 1.20) / 100);
+            maxwert += wert;
         }
         return maxwert;
     }
