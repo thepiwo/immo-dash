@@ -1,4 +1,5 @@
-This is your new Play application
-=================================
+# immoDash
 
-This file will be packaged with your application, when using `activator dist`.
+Real Estate Monitoring for Investors (Project for Burdahackday Future of Finance)
+
+Created with Play-Framework
